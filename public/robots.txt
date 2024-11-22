@@ -1,0 +1,6 @@
+# https://animereborncodes.org/robots.txt
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://animereborncodes.org/sitemap.xml
