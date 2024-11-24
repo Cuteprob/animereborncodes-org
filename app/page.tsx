@@ -1,8 +1,23 @@
+"use client";
 import Image from "next/image";
 import YouTubeVideo from "@/components/YouTubeVideo";
 import SubscribeForm from "@/components/SubscribeForm";
+import { useState, useEffect } from "react";
+import { codes } from "@/config/codes";
 
 export default function Home() {
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    // Update date every minute
+    const timer = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 60000); // 60000 milliseconds = 1 minute
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <main className="relative min-h-screen text-white">
       {/* Fixed Background Image */}
@@ -38,7 +53,7 @@ export default function Home() {
                     View Latest Codes
                   </a>
                   <p className="text-sm italic text-yellow-400">
-                    Last checked: {new Date().toLocaleDateString('en-US', { 
+                    Last checked: {currentDate.toLocaleDateString('en-US', { 
                       day: 'numeric',
                       month: 'long',
                       year: 'numeric'
@@ -68,7 +83,7 @@ export default function Home() {
 
               <div className="mt-8 flex flex-col items-center justify-center space-y-4 sm:flex-row sm:space-x-4 sm:space-y-0">
                 <p className="text-sm italic text-yellow-400">
-                  Last checked: {new Date().toLocaleDateString('en-US', { 
+                  Last checked: {currentDate.toLocaleDateString('en-US', { 
                     day: 'numeric',
                     month: 'long',
                     year: 'numeric'
@@ -89,144 +104,21 @@ export default function Home() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-700">
-                    {/* NEW Codes */}
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">Freetickets</td>
-                      <td className="px-4 py-3 text-gray-100">5000 Red Tickets [Must be level 10 to use]</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-purple-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          NEW
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-800 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">!Update</td>
-                      <td className="px-4 py-3 text-gray-100">1250 Red Tickets + 5 Rerolls + 5 Frost Keys</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-purple-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          NEW
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">!Gohun</td>
-                      <td className="px-4 py-3 text-gray-100">1250 Red Tickets + 5 Rerolls</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-purple-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          NEW
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-800 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">UpdateSoon!</td>
-                      <td className="px-4 py-3 text-gray-100">1000 Gems + 10 Rerolls + 5 Frost Keys</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-purple-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          NEW
-                        </span>
-                      </td>
-                    </tr>
-
-                    {/* WORKING Codes */}
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">20Mvisits</td>
-                      <td className="px-4 py-3 text-gray-100">1,000 Gems, 5 Rerolls, 3 Frost Keys, 3 Potential Keys and Basic Luck Potion</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-800 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">XMEGACODE</td>
-                      <td className="px-4 py-3 text-gray-100">2k Gems + 15 rerolls + 10 Frost Keys + 10 Potential Keys + Legends Potion</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">10MVisits</td>
-                      <td className="px-4 py-3 text-gray-100">1000 Gems + 2 Trait crystal + 5 Potential Keys</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-800 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">SorryForFoodBug!</td>
-                      <td className="px-4 py-3 text-gray-100">100 Meat [level 25 req]</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">MegaZillas</td>
-                      <td className="px-4 py-3 text-gray-100">750 gems + 2 Trait Crystal</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-800 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">5mVisits</td>
-                      <td className="px-4 py-3 text-gray-100">Redeem code for Gems</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">2MVisits</td>
-                      <td className="px-4 py-3 text-gray-100">500 Gems + 2 Trait crystals + 2 keys</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-800 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">1MVisits</td>
-                      <td className="px-4 py-3 text-gray-100">1,000 Gems + 5 Rerolls + 2 potential Keys</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">200kMembers</td>
-                      <td className="px-4 py-3 text-gray-100">Redeem code for Gems</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-800 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">SubtoRlxsage</td>
-                      <td className="px-4 py-3 text-gray-100">250 Gems + 1 Reroll</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
-                    <tr className="bg-gray-900 bg-opacity-50">
-                      <td className="px-4 py-3 font-mono text-gray-100">RELEASE</td>
-                      <td className="px-4 py-3 text-gray-100">500 Gems + 2 Reroll</td>
-                      <td className="px-4 py-3">
-                        <span className="inline-flex items-center rounded-full bg-green-500 px-2.5 py-0.5 text-sm font-medium text-white">
-                          Working
-                        </span>
-                      </td>
-                    </tr>
+                    {codes.filter(code => code.status !== 'Expired').map((code, index) => (
+                      <tr key={code.code} className={index % 2 === 0 ? "bg-gray-900 bg-opacity-50" : "bg-gray-800 bg-opacity-50"}>
+                        <td className="px-4 py-3 font-mono text-gray-100">{code.code}</td>
+                        <td className="px-4 py-3 text-gray-100">{code.rewards}</td>
+                        <td className="px-4 py-3">
+                          <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-sm font-medium text-white ${
+                            code.status === 'NEW' ? 'bg-purple-500' : 
+                            code.status === 'Working' ? 'bg-green-500' : 
+                            'bg-red-500'
+                          }`}>
+                            {code.status}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -246,26 +138,13 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-700">
-                      <tr className="bg-gray-900 bg-opacity-50">
-                        <td className="px-4 py-3 font-mono text-gray-400 line-through">500kLikes</td>
-                        <td className="px-4 py-3 text-gray-400">5,000 Gems, 3 Trait Crystals</td>
-                        <td className="px-4 py-3 text-red-500">Expired</td>
-                      </tr>
-                      <tr className="bg-gray-800 bg-opacity-50">
-                        <td className="px-4 py-3 font-mono text-gray-400 line-through">Halloween2024</td>
-                        <td className="px-4 py-3 text-gray-400">Special Halloween Skin, 2,000 Gems</td>
-                        <td className="px-4 py-3 text-red-500">Expired</td>
-                      </tr>
-                      <tr className="bg-gray-900 bg-opacity-50">
-                        <td className="px-4 py-3 font-mono text-gray-400 line-through">ThankYou100k</td>
-                        <td className="px-4 py-3 text-gray-400">10,000 Gems, 5 Frost Keys</td>
-                        <td className="px-4 py-3 text-red-500">Expired</td>
-                      </tr>
-                      <tr className="bg-gray-800 bg-opacity-50">
-                        <td className="px-4 py-3 font-mono text-gray-400 line-through">NewUpdate2024</td>
-                        <td className="px-4 py-3 text-gray-400">3 Potential Keys, 2 Luck Potions</td>
-                        <td className="px-4 py-3 text-red-500">Expired</td>
-                      </tr>
+                      {codes.filter(code => code.status === 'Expired').map((code, index) => (
+                        <tr key={code.code} className={index % 2 === 0 ? "bg-gray-900 bg-opacity-50" : "bg-gray-800 bg-opacity-50"}>
+                          <td className="px-4 py-3 font-mono text-gray-400 line-through">{code.code}</td>
+                          <td className="px-4 py-3 text-gray-400">{code.rewards}</td>
+                          <td className="px-4 py-3 text-red-500">{code.status}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
