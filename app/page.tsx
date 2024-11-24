@@ -23,7 +23,7 @@ export default function Home() {
       {/* Fixed Background Image */}
       <div className="fixed inset-0">
         <Image
-          src="/roblox-anime-reborn-header-image.webp"
+          src="/GdEd8DwbIAAyXZi.jpeg"
           alt="Anime Reborn Game Background"
           fill
           className="object-cover"
